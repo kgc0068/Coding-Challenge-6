@@ -1,0 +1,74 @@
+---
+title: "Coding Challenge 6"
+author: "Katie Clouse"
+date: "2025-03-27"
+output: 
+  pdf_document
+  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Question 1: 
+```{r}
+# Regarding reproducibility, what is the main point of writing your own functions and iterations? 
+
+# the main point is to reduce copy and paste errors and to improve reporducibility. It also helps simplify the process of creating the code. 
+```
+#### Question 2:
+```{r}
+#In your own words, describe how to write a function and a for loop in R and how they work. Give me specifics like syntax, where to write code, and how the results are returned. 
+
+# to create a function, you first have to name it. Similiar to what we did for the homework, the function F_to_C is the name. Then, you put the code function() and inside the paranthesis, this is where you will put the variable that you want to put through the function. Then, you have to use the curly brackets to actually list the code that you want. Then, you have to use the return() and inside these parantheses, you will put the output that you want. 
+
+# for loop: your code will start out as 'for ( i in x:X)'. What this means is that the i will be whatever numbers you have displayed in teh x:x. In the homework, the example was -30:100, so i would represent the numbers from -30 to 100. Then you put curly brackets and type the code print() and in these parantheses you will put the output that you want to see. Again, in the homework, we put the code in the curly brackets as result <- F_to_C(i), so in the print() you would write result. all the components of i will be put into the F_to_C code. 
+```
+#### Question 3
+```{r}
+cities.data <- read.csv("C:/Users/katie/Downloads/Cities.csv")
+library(tidyverse)
+
+```
+#### QUestion 4
+```{r}
+distance.bet <- function(lat1, lon1, lat2, lon2){
+rad.lat1 <- lat1 * pi/180
+rad.lon1 <- lon1 * pi/180
+rad.lat2 <- lat2 * pi/180
+rad.lon2 <- lon2 * pi/180
+#Haversine formula 
+delta_lat <- rad.lat2 - rad.lat1
+delta_lon <- rad.lon2 - rad.lon1
+a <- sin(delta_lat / 2)^2 + cos(rad.lat1) * cos(rad.lat2) * sin(delta_lon / 2)^2
+c <- 2 * asin(sqrt(a)) 
+# Earth's radius in kilometers
+earth_radius <- 6378137
+# Calculate the distance
+distance_km <- (earth_radius * c)/1000
+}
+```
+#### Question 5
+```{r}
+lat.lon.data <- subset(cities.data, city %in% c("New York", "Auburn"), select = 
+c(long, lat))
+print(lat.lon.data)
+nyc_auburn <- distance.bet(40.6943, -73.9249, 32.6087, -85.4903)
+print(nyc_auburn)
+```
+#### Question 6
+```{r}
+cities.df <- NULL
+
+for (i in 1:nrow(cities.data)) {
+  result <- distance.bet(cities.data$lat[i], cities.data$long[i], 32.6087, -85.4903)
+  cities.df <- rbind.data.frame(cities.df, result)
+  print(cities.df)
+}
+```
+### Github account
+```{r}
+library(tinytex)
+# My Github account(https://github.com/kgc0068/Coding-Challenge-6.git)
+```
