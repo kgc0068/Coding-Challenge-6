@@ -3,8 +3,9 @@ title: "Coding Challenge 6"
 author: "Katie Clouse"
 date: "2025-03-27"
 output: 
-  pdf_document
-  
+    pdf_document:
+      
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -67,8 +68,6 @@ for (i in 1:nrow(cities.data)) {
   print(cities.df)
 }
 ```
-### Github account
-```{r}
-library(tinytex)
-# My Github account(https://github.com/kgc0068/Coding-Challenge-6.git)
-```
+
+[Link to my github](https://github.com/kgc0068/Coding-Challenge-6.git)
+
